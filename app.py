@@ -73,7 +73,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("US Cost of Dementia Model")
+st.title("Cost Model Emulator Interface Test")
 st.sidebar.header("Filters")
 
 selected_outcome = st.sidebar.selectbox("Outcome", list(OUTCOME_OPTIONS.keys()))
@@ -362,3 +362,4 @@ if st.sidebar.button("Run Simulation"):
     # ]).format(lambda x: "{:.2f}".format(x) if float("{:.2f}".format(x)) != 0 else "0.00")
 
     # st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+
