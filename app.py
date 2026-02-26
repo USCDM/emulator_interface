@@ -40,7 +40,9 @@ OUTCOME_OPTIONS = {
     "Population with Heart Disease": "n_hearte",
     "Heart Disease Prevalence (%)": "p_hearte",
     "Population with Hypertension": "n_hibpe",
-    "Hypertension Prevalence (%)": "p_hibpe"
+    "Hypertension Prevalence (%)": "p_hibpe",
+    "Non-spouse help hours (annual)": "helphoursyr_nonsp",
+    "Spouse help hours (annual)": "helphoursyr_sp"
 }
 
 SUBGROUP_OPTIONS = {
@@ -53,7 +55,6 @@ SUBGROUP_OPTIONS = {
     "At least some college": "college",
     "Female": "f",
     "Hispanic": "his",
-    "Hispanic female": "his_f",
     "GED or less than high school": "hsless",
     "Male": "m",
     "Non-Hispanic white": "wht"
@@ -362,4 +363,5 @@ if st.sidebar.button("Run Simulation"):
     # ]).format(lambda x: "{:.2f}".format(x) if float("{:.2f}".format(x)) != 0 else "0.00")
 
     # st.markdown(styled_df.to_html(), unsafe_allow_html=True)
+
 
