@@ -7,6 +7,7 @@ CLEANED_DATASETS = {
     "pdiabe": "clean_data/pdiabe_cleaned.csv",
     "phearte": "clean_data/phearte_cleaned.csv",
     "phibpe": "clean_data/phibpe_cleaned.csv",
+    "bmi": "clean_data/bmi_cleaned.csv",
     "pcogstate": "clean_data/pcogstate_cleaned.csv"
 }
 
@@ -25,6 +26,7 @@ INTERVENTION_OPTIONS = {
     "Diabetes Incidence Reduction": "pdiabe",
     "Heart Disease Incidence Reduction": "phearte",
     "Hypertension Incidence Reduction": "phibpe",
+    "BMI Reduction": "bmi",
     "MCI/Dementia Incidence Reduction": "pcogstate"
 }
 
@@ -41,23 +43,29 @@ OUTCOME_OPTIONS = {
     "Heart Disease Prevalence (%)": "p_hearte",
     "Population with Hypertension": "n_hibpe",
     "Hypertension Prevalence (%)": "p_hibpe",
-    "Non-spouse help hours (annual)": "helphoursyr_nonsp",
-    "Spouse help hours (annual)": "helphoursyr_sp"
+    "Help hours (annual)": "helphoursyr",
+    "Total medical costs (annual)": "t_totmd",
+    "Medicare costs (annual)": "t_mcare",
+    "Medicaid costs": "t_caidmd",
+    "OOP medical costs (annual)": "t_oopmd",
+    "QALYs (annual)": "t_qalys",
+    "Dementia caregiver QALYs (annual)": "t_demcgqalys",
+    "Number of dementia caregivers": "t_est_helperct_dem"
 }
 
 SUBGROUP_OPTIONS = {
+    "All": "all",
     "Age 55-64": "5564",
     "Age 65-74": "6574",
     "Age 75-84": "7584",
     "Age 85+": "85p",
-    "All": "all",
-    "Non-Hispanic black": "blk",
-    "At least some college": "college",
     "Female": "f",
-    "Hispanic": "his",
-    "GED or less than high school": "hsless",
     "Male": "m",
+    "Hispanic": "his",
+    "Non-Hispanic black": "blk",
     "Non-Hispanic white": "wht"
+    "GED or less than high school": "hsless",
+    "At least some college": "college",
 }
 
 
@@ -86,8 +94,8 @@ intervention_levels = {}
 for item in selected_interventions:
     key = INTERVENTION_OPTIONS[item]
     if key == "pcogstate":
-        intervention_levels["pcogstate_1"] = st.sidebar.slider("Dementia Prevalence Reduction", 0.5, 1.0, 0.85, 0.01)
-        intervention_levels["pcogstate_2"] = st.sidebar.slider("MCI Prevalence Reduction", 0.5, 1.0, 0.90, 0.01)
+        intervention_levels["pcogstate_1"] = st.sidebar.slider("MCI->Dementia Prevalence Reduction", 0.5, 1.0, 0.85, 0.01)
+        intervention_levels["pcogstate_2"] = st.sidebar.slider("Normal->Impairment Reduction", 0.5, 1.0, 0.90, 0.01)
     else:
         intervention_levels[key] = st.sidebar.slider(f"{item} Level", 0.5, 1.0, 0.85, 0.01)
 

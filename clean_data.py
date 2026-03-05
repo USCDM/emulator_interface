@@ -5,7 +5,8 @@ RAW_DATASETS = {
     "pdiabe": "data/uscdm_emu_pdiabe_regression_ests.csv",
     "phearte": "data/uscdm_emu_phearte_regression_ests.csv",
     "phibpe": "data/uscdm_emu_phibpe_regression_ests.csv",
-    "pcogstate": "data/uscdm_emu_pcogstate_regression_ests.csv"
+    "pcogstate": "data/uscdm_emu_pcogstate_regression_ests.csv",
+    "bmi": "data/uscdm_emu_bmi_regression_ests.csv"
 }
 
 CLEANED_DIR = "clean_data"
