@@ -63,9 +63,9 @@ SUBGROUP_OPTIONS = {
     "Male": "m",
     "Hispanic": "his",
     "Non-Hispanic black": "blk",
-    "Non-Hispanic white": "wht"
+    "Non-Hispanic white": "wht",
     "GED or less than high school": "hsless",
-    "At least some college": "college",
+    "At least some college": "college"
 }
 
 
