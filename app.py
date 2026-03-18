@@ -31,13 +31,13 @@ INTERVENTION_OPTIONS = {
 }
 
 OUTCOME_OPTIONS = {
-    "Total Population": "n_startpop",
-    "Population with Dementia": "n_cogstate1",
-    "Dementia Prevalence (%)": "p_cogstate1",
+    "Total population": "n_startpop",
+    "Population with dementia": "n_cogstate1",
+    "Dementia prevalence (%)": "p_cogstate1",
     "Population with MCI": "n_cogstate2",
-    "MCI Prevalence (%)": "p_cogstate2",
-    "Help hours to PWLD (annual)": "helphoursyr_dem",
-    "PWLD nursing Home Population": "n_nhmliv_dem",
+    "MCI prevalence (%)": "p_cogstate2",
+    "Help hours to PLWD (annual)": "helphoursyr_dem",
+    "PLWD nursing home population": "n_nhmliv_dem",
     "PLWD total medical costs (annual $)": "t_totmd_dem",
     "PLWD Medicare costs (annual $)": "t_mcare_dem",
     "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
