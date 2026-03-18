@@ -31,26 +31,18 @@ INTERVENTION_OPTIONS = {
 }
 
 OUTCOME_OPTIONS = {
-    "Population": "n_startpop",
-    "Nursing Home Population": "n_nhmliv",
+    "Total Population": "n_startpop",
     "Population with Dementia": "n_cogstate1",
     "Dementia Prevalence (%)": "p_cogstate1",
     "Population with MCI": "n_cogstate2",
     "MCI Prevalence (%)": "p_cogstate2",
-    "Population with Diabetes": "n_diabe",
-    "Diabetes Prevalence (%)": "p_diabe",
-    "Population with Heart Disease": "n_hearte",
-    "Heart Disease Prevalence (%)": "p_hearte",
-    "Population with Hypertension": "n_hibpe",
-    "Hypertension Prevalence (%)": "p_hibpe",
-    "Help hours (annual)": "helphoursyr",
-    "Total medical costs (annual)": "t_totmd",
-    "Medicare costs (annual)": "t_mcare",
-    "Medicaid costs": "t_caidmd",
-    "OOP medical costs (annual)": "t_oopmd",
-    "QALYs (annual)": "t_qalys",
-    "Dementia caregiver QALYs (annual)": "t_demcgqalys",
-    "Number of dementia caregivers": "t_est_helperct_dem"
+    "Help hours to PWLD (annual)": "helphoursyr_dem",
+    "PWLD nursing Home Population": "n_nhmliv_dem",
+    "PLWD total medical costs (annual $)": "t_totmd_dem",
+    "PLWD Medicare costs (annual $)": "t_mcare_dem",
+    "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
+    "PLWD OOP medical costs (annual $)": "t_oopmd_dem",
+    "PLWD QALYs (annual $)": "t_qalys_dem"
 }
 
 SUBGROUP_OPTIONS = {
@@ -94,7 +86,7 @@ intervention_levels = {}
 for item in selected_interventions:
     key = INTERVENTION_OPTIONS[item]
     if key == "pcogstate":
-        intervention_levels["pcogstate_1"] = st.sidebar.slider("MCI->Dementia Prevalence Reduction", 0.5, 1.0, 0.85, 0.01)
+        intervention_levels["pcogstate_1"] = st.sidebar.slider("MCI->Dementia Reduction", 0.5, 1.0, 0.85, 0.01)
         intervention_levels["pcogstate_2"] = st.sidebar.slider("Normal->Impairment Reduction", 0.5, 1.0, 0.90, 0.01)
     else:
         intervention_levels[key] = st.sidebar.slider(f"{item} Level", 0.5, 1.0, 0.85, 0.01)
