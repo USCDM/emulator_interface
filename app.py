@@ -43,12 +43,13 @@ OUTCOME_OPTIONS = {
     "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
     "PLWD OOP medical costs (annual $)": "t_oopmd_dem",
     "PLWD QALY loss (annual $)": "qaly_loss_plwd",
-    "PLWD foregone earnings (annual $)": "foregone_earnings_plwd"
+    "PLWD foregone earnings (annual $1000s)": "foregone_earnings_plwd"
 }
 
 SUBGROUP_OPTIONS = {
     "All": "all",
     "Age 55-64": "5564",
+    "Age 65+": "65p",
     "Age 65-74": "6574",
     "Age 75-84": "7584",
     "Age 85+": "85p",
