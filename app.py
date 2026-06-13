@@ -43,7 +43,7 @@ OUTCOME_OPTIONS = {
     "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
     "PLWD OOP medical costs (annual $)": "t_oopmd_dem",
     "PLWD QALY loss (annual $)": "qaly_loss_plwd",
-    "PLWD foregone earnings (annual $1000s)": "foregone_earnings_plwd"
+    "PLWD foregone earnings (annual $1000s)": "earnings_loss_plwd"
 }
 
 SUBGROUP_OPTIONS = {
