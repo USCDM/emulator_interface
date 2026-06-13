@@ -4,10 +4,10 @@ import plotly.graph_objs as go
 import os
 
 CLEANED_DATASETS = {
-    "pdiabe": "clean_data/pdiabe_cleaned.csv",
-    "phearte": "clean_data/phearte_cleaned.csv",
-    "phibpe": "clean_data/phibpe_cleaned.csv",
-    "bmi": "clean_data/bmi_cleaned.csv",
+#    "pdiabe": "clean_data/pdiabe_cleaned.csv",
+#    "phearte": "clean_data/phearte_cleaned.csv",
+#    "phibpe": "clean_data/phibpe_cleaned.csv",
+#    "bmi": "clean_data/bmi_cleaned.csv",
     "pcogstate": "clean_data/pcogstate_cleaned.csv"
 }
 
@@ -23,10 +23,10 @@ def load_cleaned_data():
 df_dict = load_cleaned_data()
 
 INTERVENTION_OPTIONS = {
-    "Diabetes Incidence Reduction": "pdiabe",
-    "Heart Disease Incidence Reduction": "phearte",
-    "Hypertension Incidence Reduction": "phibpe",
-    "BMI Reduction": "bmi",
+#    "Diabetes Incidence Reduction": "pdiabe",
+#    "Heart Disease Incidence Reduction": "phearte",
+#    "Hypertension Incidence Reduction": "phibpe",
+#    "BMI Reduction": "bmi",
     "MCI/Dementia Incidence Reduction": "pcogstate"
 }
 
@@ -42,12 +42,14 @@ OUTCOME_OPTIONS = {
     "PLWD Medicare costs (annual $)": "t_mcare_dem",
     "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
     "PLWD OOP medical costs (annual $)": "t_oopmd_dem",
-    "PLWD QALYs (annual $)": "t_qalys_dem"
+    "PLWD QALY loss (annual $)": "qaly_loss_plwd",
+    "PLWD foregone earnings (annual $1000s)": "foregone_earnings_plwd"
 }
 
 SUBGROUP_OPTIONS = {
     "All": "all",
     "Age 55-64": "5564",
+    "Age 65+": "65p",
     "Age 65-74": "6574",
     "Age 75-84": "7584",
     "Age 85+": "85p",
