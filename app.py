@@ -130,7 +130,7 @@ if st.sidebar.button("Run Simulation"):
         intervention_values = []
 
         for year in year_range:
-            year_inc = year - 2024
+            year_inc = year - 2026
             
             # Common terms
             # _cons
