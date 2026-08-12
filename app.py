@@ -36,7 +36,7 @@ OUTCOME_OPTIONS = {
     "Dementia prevalence (%)": "p_cogstate1",
     "Population with MCI": "n_cogstate2",
     "MCI prevalence (%)": "p_cogstate2",
-    "Help hours to PLWD (annual)": "helphoursyr_dem",
+    "Help hours to PLWD (annual)": "s_helphoursyr_dem",
     "PLWD nursing home population": "n_nhmliv_dem",
     "PLWD total medical costs (annual $)": "t_totmd_dem",
     "PLWD Medicare costs (annual $)": "t_mcare_dem",
