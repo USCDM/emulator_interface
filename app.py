@@ -43,7 +43,7 @@ OUTCOME_OPTIONS = {
     "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
     "PLWD OOP medical costs (annual $)": "t_oopmd_dem",
     "PLWD QALY loss (annual $)": "qaly_loss_plwd",
-    "PLWD foregone earnings (annual $1000s)": "earnings_loss_plwd"
+    "PLWD foregone earnings (annual $)": "earnings_loss_plwd"
 }
 
 SUBGROUP_OPTIONS = {
@@ -88,8 +88,8 @@ intervention_levels = {}
 for item in selected_interventions:
     key = INTERVENTION_OPTIONS[item]
     if key == "pcogstate":
-        intervention_levels["pcogstate_1"] = st.sidebar.slider("MCI->Dementia Reduction", 0.5, 1.0, 0.85, 0.01)
-        intervention_levels["pcogstate_2"] = st.sidebar.slider("Normal->Impairment Reduction", 0.5, 1.0, 0.90, 0.01)
+        intervention_levels["pcogstate_1"] = st.sidebar.slider("MCI->Dementia Risk Reduction", 0.5, 1.0, 0.85, 0.01)
+        intervention_levels["pcogstate_2"] = st.sidebar.slider("Normal->Impairment Risk Reduction", 0.5, 1.0, 0.90, 0.01)
     else:
         intervention_levels[key] = st.sidebar.slider(f"{item} Level", 0.5, 1.0, 0.85, 0.01)
 
