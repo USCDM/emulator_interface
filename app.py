@@ -75,7 +75,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("United States Cost of Dementia Model Intervention Forecast")
+st.title("United States Cost of Dementia Model Forecast")
 st.sidebar.header("Filters")
 
 selected_outcome = st.sidebar.selectbox("Outcome", list(OUTCOME_OPTIONS.keys()))
