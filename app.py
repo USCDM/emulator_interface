@@ -48,7 +48,6 @@ OUTCOME_OPTIONS = {
 
 SUBGROUP_OPTIONS = {
     "All": "all",
-    "Age 55-64": "5564",
     "Age 65+": "65p",
     "Age 65-74": "6574",
     "Age 75-84": "7584",
@@ -76,7 +75,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Cost Model Emulator Interface Test")
+st.title("United States Cost of Dementia Model Intervention Forecast")
 st.sidebar.header("Filters")
 
 selected_outcome = st.sidebar.selectbox("Outcome", list(OUTCOME_OPTIONS.keys()))
