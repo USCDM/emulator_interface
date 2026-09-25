@@ -77,20 +77,43 @@ st.markdown("""
 
 st.title("United States Cost of Dementia Model Forecast")
 st.sidebar.header("Filters")
+selected_outcome = st.sidebar.selectbox(
+    "Outcome",
+    list(OUTCOME_OPTIONS.keys())
+)
 
-selected_outcome = st.sidebar.selectbox("Outcome", list(OUTCOME_OPTIONS.keys()))
-selected_subgroup = st.sidebar.selectbox("Subgroup", list(SUBGROUP_OPTIONS.keys()))
-selected_interventions = st.sidebar.multiselect("Choose Intervention(s)", list(INTERVENTION_OPTIONS.keys()))
-start_year, end_year = st.sidebar.slider("Year Range", min_value=2026, max_value=2050, value=(2026, 2050), step=2)
+selected_subgroup = st.sidebar.selectbox(
+    "Subgroup",
+    list(SUBGROUP_OPTIONS.keys())
+)
 
-intervention_levels = {}
-for item in selected_interventions:
-    key = INTERVENTION_OPTIONS[item]
-    if key == "pcogstate":
-        intervention_levels["pcogstate_1"] = st.sidebar.slider("MCI->Dementia Risk Reduction", 0.5, 1.0, 0.85, 0.01)
-        intervention_levels["pcogstate_2"] = st.sidebar.slider("Normal->Impairment Risk Reduction", 0.5, 1.0, 0.90, 0.01)
-    else:
-        intervention_levels[key] = st.sidebar.slider(f"{item} Level", 0.5, 1.0, 0.85, 0.01)
+start_year, end_year = st.sidebar.slider(
+    "Year Range",
+    min_value=2026,
+    max_value=2050,
+    value=(2026, 2050),
+    step=2
+)
+
+# MCI/Dementia Incidence Reduction is always used.
+selected_interventions = ["MCI/Dementia Incidence Reduction"]
+
+intervention_levels = {
+    "pcogstate_1": st.sidebar.slider(
+        "MCI → Dementia Risk Reduction",
+        min_value=0.5,
+        max_value=1.0,
+        value=0.85,
+        step=0.01
+    ),
+    "pcogstate_2": st.sidebar.slider(
+        "Normal → Impairment Risk Reduction",
+        min_value=0.5,
+        max_value=1.0,
+        value=0.90,
+        step=0.01
+    )
+}
 
 if st.sidebar.button("Run Simulation"):
 
