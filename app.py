@@ -4,9 +4,10 @@ import plotly.graph_objs as go
 import os
 
 CLEANED_DATASETS = {
-    "pdiabe": "clean_data/pdiabe_cleaned.csv",
-    "phearte": "clean_data/phearte_cleaned.csv",
-    "phibpe": "clean_data/phibpe_cleaned.csv",
+#    "pdiabe": "clean_data/pdiabe_cleaned.csv",
+#    "phearte": "clean_data/phearte_cleaned.csv",
+#    "phibpe": "clean_data/phibpe_cleaned.csv",
+#    "bmi": "clean_data/bmi_cleaned.csv",
     "pcogstate": "clean_data/pcogstate_cleaned.csv"
 }
 
@@ -22,42 +23,42 @@ def load_cleaned_data():
 df_dict = load_cleaned_data()
 
 INTERVENTION_OPTIONS = {
-    "Diabetes Incidence Reduction": "pdiabe",
-    "Heart Disease Incidence Reduction": "phearte",
-    "Hypertension Incidence Reduction": "phibpe",
+#    "Diabetes Incidence Reduction": "pdiabe",
+#    "Heart Disease Incidence Reduction": "phearte",
+#    "Hypertension Incidence Reduction": "phibpe",
+#    "BMI Reduction": "bmi",
     "MCI/Dementia Incidence Reduction": "pcogstate"
 }
 
 OUTCOME_OPTIONS = {
-    "Population": "n_startpop",
-    "Nursing Home Population": "n_nhmliv",
-    "Population with Dementia": "n_cogstate1",
-    "Dementia Prevalence (%)": "p_cogstate1",
+    "Total population": "n_startpop",
+    "Population with dementia": "n_cogstate1",
+    "Dementia prevalence (%)": "p_cogstate1",
     "Population with MCI": "n_cogstate2",
-    "MCI Prevalence (%)": "p_cogstate2",
-    "Population with Diabetes": "n_diabe",
-    "Diabetes Prevalence (%)": "p_diabe",
-    "Population with Heart Disease": "n_hearte",
-    "Heart Disease Prevalence (%)": "p_hearte",
-    "Population with Hypertension": "n_hibpe",
-    "Hypertension Prevalence (%)": "p_hibpe",
-    "Non-spouse help hours (annual)": "helphoursyr_nonsp",
-    "Spouse help hours (annual)": "helphoursyr_sp"
+    "MCI prevalence (%)": "p_cogstate2",
+    "Help hours to PLWD (annual)": "s_helphoursyr_dem",
+    "PLWD nursing home population": "n_nhmliv_dem",
+    "PLWD total medical costs (annual $)": "t_totmd_dem",
+    "PLWD Medicare costs (annual $)": "t_mcare_dem",
+    "PLWD Medicaid costs (annual $)": "t_caidmd_dem",
+    "PLWD OOP medical costs (annual $)": "t_oopmd_dem",
+    "PLWD QALY loss (annual $)": "qaly_loss_plwd",
+    "PLWD foregone earnings (annual $)": "earnings_loss_plwd"
 }
 
 SUBGROUP_OPTIONS = {
-    "Age 55-64": "5564",
+    "All": "all",
+    "Age 65+": "65p",
     "Age 65-74": "6574",
     "Age 75-84": "7584",
     "Age 85+": "85p",
-    "All": "all",
-    "Non-Hispanic black": "blk",
-    "At least some college": "college",
     "Female": "f",
-    "Hispanic": "his",
-    "GED or less than high school": "hsless",
     "Male": "m",
-    "Non-Hispanic white": "wht"
+    "Hispanic": "his",
+    "Non-Hispanic black": "blk",
+    "Non-Hispanic white": "wht",
+   # "GED or less than high school": "hsless",
+   # "At least some college": "college"
 }
 
 
@@ -74,22 +75,45 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Cost Model Emulator Interface Test")
+st.title("United States Cost of Dementia Model Forecast")
 st.sidebar.header("Filters")
+selected_outcome = st.sidebar.selectbox(
+    "Outcome",
+    list(OUTCOME_OPTIONS.keys())
+)
 
-selected_outcome = st.sidebar.selectbox("Outcome", list(OUTCOME_OPTIONS.keys()))
-selected_subgroup = st.sidebar.selectbox("Subgroup", list(SUBGROUP_OPTIONS.keys()))
-selected_interventions = st.sidebar.multiselect("Choose Intervention(s)", list(INTERVENTION_OPTIONS.keys()))
-start_year, end_year = st.sidebar.slider("Year Range", min_value=2026, max_value=2050, value=(2026, 2050), step=2)
+selected_subgroup = st.sidebar.selectbox(
+    "Subgroup",
+    list(SUBGROUP_OPTIONS.keys())
+)
 
-intervention_levels = {}
-for item in selected_interventions:
-    key = INTERVENTION_OPTIONS[item]
-    if key == "pcogstate":
-        intervention_levels["pcogstate_1"] = st.sidebar.slider("Dementia Prevalence Reduction", 0.5, 1.0, 0.85, 0.01)
-        intervention_levels["pcogstate_2"] = st.sidebar.slider("MCI Prevalence Reduction", 0.5, 1.0, 0.90, 0.01)
-    else:
-        intervention_levels[key] = st.sidebar.slider(f"{item} Level", 0.5, 1.0, 0.85, 0.01)
+start_year, end_year = st.sidebar.slider(
+    "Year Range",
+    min_value=2026,
+    max_value=2050,
+    value=(2026, 2050),
+    step=2
+)
+
+# MCI/Dementia Incidence Reduction is always used.
+selected_interventions = ["MCI/Dementia Incidence Reduction"]
+
+intervention_levels = {
+    "pcogstate_1": st.sidebar.slider(
+        "MCI → Dementia Risk Reduction",
+        min_value=0.5,
+        max_value=1.0,
+        value=0.85,
+        step=0.01
+    ),
+    "pcogstate_2": st.sidebar.slider(
+        "Normal → Impairment Risk Reduction",
+        min_value=0.5,
+        max_value=1.0,
+        value=0.90,
+        step=0.01
+    )
+}
 
 if st.sidebar.button("Run Simulation"):
 
@@ -128,7 +152,7 @@ if st.sidebar.button("Run Simulation"):
         intervention_values = []
 
         for year in year_range:
-            year_inc = year - 2024
+            year_inc = year - 2026
             
             # Common terms
             # _cons
@@ -270,6 +294,7 @@ if st.sidebar.button("Run Simulation"):
             height=450,
             xaxis_title="Year",
             yaxis_title=selected_outcome,
+            hoverlabel=dict(align="left"),
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
             margin=dict(l=20, r=20, t=40, b=20),
             font=dict(color="black"),
@@ -318,6 +343,7 @@ if st.sidebar.button("Run Simulation"):
             height=450,
             xaxis_title="Year",
             yaxis_title="Difference (Intervention - Baseline)",
+            hoverlabel=dict(align="left"),
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
             margin=dict(l=20, r=20, t=40, b=20),
             font=dict(color="black"),
