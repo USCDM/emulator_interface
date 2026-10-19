@@ -299,15 +299,15 @@ if st.sidebar.button("Run Simulation"):
             margin=dict(l=20, r=20, t=40, b=20),
             font=dict(color="black"),
             xaxis=dict(
-                title_font=dict(size=14, color="black"),
-                tickfont=dict(color="black", size=12),
+                title_font=dict(size=14, color="gray"),
+                tickfont=dict(color="gray", size=12),
                 showgrid=True,
                 gridcolor='#D0D0D0',
                 showline=False
             ),
             yaxis=dict(
-                title_font=dict(size=14, color="black"),
-                tickfont=dict(color="black", size=12),
+                title_font=dict(size=14, color="gray"),
+                tickfont=dict(color="gray", size=12),
                 showgrid=True,
                 gridcolor='#D0D0D0',
                 showline=False
